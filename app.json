@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "Reuse",
+    "slug": "Reuse",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/import { useExpoRouter } from expo-routerbuildglobal-staterouter-store;.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/import { useExpoRouter } from expo-routerbuildglobal-staterouter-store;.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/pngtree-no-image-available-icon-flatvector-illustration-picture-coming-creative-vector-png-image_40968940.jpg",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router"
+    ]
+  }
+}
