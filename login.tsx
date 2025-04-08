@@ -1,24 +1,63 @@
-import { View, Text, TextInput, StyleSheet } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { View, Button, TextInput, StyleSheet } from "react-native";
 
 
-export default function LoginTab() {
+export default function loginTab () {
+    const key ='chave'
 
-    return (
+    const saveItem = async (value: string) => {
+        try {
+            await AsyncStorage.setItem(key, value)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    const removeItem = async () => {
+        try {
+            await AsyncStorage.removeItem(key);
+        } catch(error) {
+            console.log(error);
+        }
+    };
+    const getItem = async () => {
+        try {
+          const response = await AsyncStorage.getItem(key);
+          
+          if (response !== null ){
+            alert ('O valor é $ {response}')
+          } else {
+            alert( "Nenhum usuário encontrado");
+          }
+         } catch (error) {
+            console.log(error);
+        
+    } 
+
+    return(
         <View style={styles.container}>
-            <Text>Digite seu E-mail ou CPF</Text>
-            <TextInput placeholder="Input" style={styles.input} />
-            <Text>Digite sua sennha</Text>
-            <TextInput placeholder="Input" style={styles.input} />
-         </View>
+            <TextInput
+            style={styles.textInput}
+            onSubmitEditing= {(event) => {
+                saveItem(event.nativeEvent.text);
+            }}
+            placeholder= "Digite seu CPF para salvar"
+        />
+
+           <Button title="Ler CPF" onPress= {() => {getItem}} />   
+           <Button title="Apagar CPF" onPress= {() => {removeItem}} />
+        </View>
     );
 }
 
 
+
+
 const styles = StyleSheet.create({
     container: {
-        flex:1,
+        flex: 1,
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor: "gray"
     },
 
     input: {
@@ -29,4 +68,13 @@ const styles = StyleSheet.create({
         padding: 5,
         marginTop:20,
     },
-})
+
+    textInput: {
+        height: 35,
+        borderColor: "gray",
+        borderWidth: 0.5,
+        justifyContent: "center",
+        alignItems: "center"
+    }
+});
+}
